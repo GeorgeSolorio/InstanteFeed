@@ -10,6 +10,7 @@
 		C09CA4802AD1D900003004BC /* InstanteFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C09CA4772AD1D900003004BC /* InstanteFeed.framework */; };
 		C09CA4902AD1DB54003004BC /* FeedItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09CA48F2AD1DB54003004BC /* FeedItem.swift */; };
 		C09CA4922AD1DC58003004BC /* FeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09CA4912AD1DC58003004BC /* FeedLoader.swift */; };
+		C09CA4952AD1DEBE003004BC /* RemoteFeedLoaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09CA4942AD1DEBE003004BC /* RemoteFeedLoaderTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +28,7 @@
 		C09CA47F2AD1D900003004BC /* InstanteFeedTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = InstanteFeedTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C09CA48F2AD1DB54003004BC /* FeedItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedItem.swift; sourceTree = "<group>"; };
 		C09CA4912AD1DC58003004BC /* FeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoader.swift; sourceTree = "<group>"; };
+		C09CA4942AD1DEBE003004BC /* RemoteFeedLoaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteFeedLoaderTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		C09CA4832AD1D900003004BC /* InstanteFeedTests */ = {
 			isa = PBXGroup;
 			children = (
+				C09CA4942AD1DEBE003004BC /* RemoteFeedLoaderTests.swift */,
 			);
 			path = InstanteFeedTests;
 			sourceTree = "<group>";
@@ -155,6 +158,7 @@
 					};
 					C09CA47E2AD1D900003004BC = {
 						CreatedOnToolsVersion = 15.0;
+						LastSwiftMigration = 1500;
 					};
 				};
 			};
@@ -208,6 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C09CA4952AD1DEBE003004BC /* RemoteFeedLoaderTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -415,6 +420,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2XZ3RGN8AK;
@@ -423,6 +429,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = GeorgeSolorio.InstanteFeedTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -431,6 +438,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2XZ3RGN8AK;
