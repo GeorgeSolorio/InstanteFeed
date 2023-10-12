@@ -8,7 +8,7 @@
 import XCTest
 import InstanteFeed
 
-class URLSessionHTTPClient {
+class URLSessionHTTPClient: HTTPClient {
     
     let session: URLSession
     
@@ -121,7 +121,7 @@ class URLSessionHTTPClientTests: XCTestCase {
         NSError(domain: "any error", code: 0)
     }
     
-    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> URLSessionHTTPClient {
+    private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> HTTPClient {
         let sut = URLSessionHTTPClient()
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
