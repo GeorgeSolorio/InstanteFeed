@@ -1,0 +1,41 @@
+{
+  "configurations" : [
+    {
+      "id" : "74E26577-0398-4257-8D52-97B362EBF109",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "codeCoverage" : {
+      "targets" : [
+        {
+          "containerPath" : "container:InstanteFeed.xcodeproj",
+          "identifier" : "C09CA4762AD1D900003004BC",
+          "name" : "InstanteFeed"
+        }
+      ]
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:InstanteFeed.xcodeproj",
+        "identifier" : "C0F492DE2AE025FB001114AF",
+        "name" : "InstanteFeedAPIEndToEndTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:InstanteFeed.xcodeproj",
+        "identifier" : "C09CA47E2AD1D900003004BC",
+        "name" : "InstanteFeedTests"
+      }
+    }
+  ],
+  "version" : 1
+}
