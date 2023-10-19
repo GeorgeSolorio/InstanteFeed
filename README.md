@@ -1,3 +1,5 @@
+[![CI](https://github.com/GeorgeSolorio/InstanteFeed/actions/workflows/CI.yml/badge.svg)](https://github.com/GeorgeSolorio/InstanteFeed/actions/workflows/CI.yml)
+
 ## Image Feed Feature Specs
 
 ### Story: Customer requests to see their image feed
