@@ -8,6 +8,7 @@
 import Foundation
 
 public class LocalFeedLoader {
+    public typealias SaveResult = Error?
     private let store: FeedStore
     private let currentDate: () -> Date
     
@@ -22,7 +23,7 @@ public class LocalFeedLoader {
             guard let self = self else { return }
             
             if let cacheDeletionError = error {
-                completion(error)
+                completion(cacheDeletionError)
             } else {
                 self.cache(items, with: completion)
             }
