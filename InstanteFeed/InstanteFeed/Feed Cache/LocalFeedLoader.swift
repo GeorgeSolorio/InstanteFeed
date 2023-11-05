@@ -40,10 +40,7 @@ public class LocalFeedLoader {
                 completion(.failure(error))
             case let .found(feed, timestamp) where FeedCachePolicy.validate(timestamp, againts: self.currentDate()):
                 completion(.success(feed.toModelsl()))
-            case .found:
-                completion(.success([]))
-                
-            case .empty:
+            case .found, .empty:
                 completion(.success([]))
             }
         }
