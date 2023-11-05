@@ -18,6 +18,21 @@ public class LocalFeedLoader {
         self.currentDate = currentDate
     }
     
+    public func validateCache() {
+        store.retrieve { [weak self] result in
+            guard let self = self else { return }
+            switch result {
+            case .failure:
+                self.store.deleteCachedFeed { _ in }
+            case let .found(_, timestamp) where !FeedCachePolicy.validate(timestamp, againts: self.currentDate()):
+                self.store.deleteCachedFeed{ _ in }
+            case .empty, .found: break
+            }
+        }
+    }
+}
+    
+extension LocalFeedLoader {
     public func save(_ feed: [FeedImage], completion: @escaping (Error?) -> Void) {
         store.deleteCachedFeed { [weak self] error in
             
@@ -31,6 +46,15 @@ public class LocalFeedLoader {
         }
     }
     
+    private func cache(_ feed: [FeedImage], with completion: @escaping (Error?) -> Void) {
+        store.insert(feed.toLocal(), timestamp: self.currentDate()) { [weak self] error in
+            guard self != nil else { return }
+            completion(error)
+        }
+    }
+}
+   
+extension LocalFeedLoader {
     public func load(completion: @escaping (LoadResult) -> Void) {
         store.retrieve { [weak self] result in
             guard let self = self else { return }
@@ -43,26 +67,6 @@ public class LocalFeedLoader {
             case .found, .empty:
                 completion(.success([]))
             }
-        }
-    }
-    
-    public func validateCache() {
-        store.retrieve { [weak self] result in
-            guard let self = self else { return }
-            switch result {
-            case .failure:
-                self.store.deleteCachedFeed { _ in }
-            case let .found(_, timestamp) where !FeedCachePolicy.validate(timestamp, againts: self.currentDate()):
-                self.store.deleteCachedFeed{ _ in }
-            case .empty, .found: break
-            }
-        }
-    }
-    
-    private func cache(_ feed: [FeedImage], with completion: @escaping (Error?) -> Void) {
-        store.insert(feed.toLocal(), timestamp: self.currentDate()) { [weak self] error in
-            guard self != nil else { return }
-            completion(error)
         }
     }
 }
