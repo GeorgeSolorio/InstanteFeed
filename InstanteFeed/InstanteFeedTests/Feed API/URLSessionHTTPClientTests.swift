@@ -94,10 +94,6 @@ class URLSessionHTTPClientTests: XCTestCase {
         HTTPURLResponse(url: anyURL(), statusCode: 200, httpVersion: nil, headerFields: nil)!
     }
     
-    private func anyNSError() -> NSError {
-        NSError(domain: "any error", code: 0)
-    }
-    
     private func makeSUT(file: StaticString = #filePath, line: UInt = #line) -> HTTPClient {
         let sut = URLSessionHTTPClient()
         trackForMemoryLeaks(sut, file: file, line: line)
@@ -142,10 +138,6 @@ class URLSessionHTTPClientTests: XCTestCase {
             XCTFail("Expected failure, got \(result) instead", file: file, line: line)
             return nil
         }
-    }
-    
-    private func anyURL() -> URL {
-        return URL(string: "http://any-url.com")!
     }
     
     private class URLProtocolStub: URLProtocol {
