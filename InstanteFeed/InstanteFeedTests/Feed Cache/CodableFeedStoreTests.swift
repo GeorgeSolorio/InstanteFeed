@@ -88,12 +88,7 @@ class CodableFeedStoreTests: XCTestCase {
         let expectedFeed = uniqueImageFeed().local
         let expectedTimestamp = Date()
         
-        let exp = expectation(description: "Wait for completion")
-        sut.insert(expectedFeed, timestamp: expectedTimestamp) { insertionError in
-            XCTAssertNil(insertionError, "Expected feed to be inserted successfully")
-            exp.fulfill()
-        }
-        wait(for: [exp], timeout: 1.0)
+        insert((expectedFeed, expectedTimestamp), to: sut)
         
         expect(sut, toRetrieve: .found(feed: expectedFeed, timestamp: expectedTimestamp))
     }
@@ -102,13 +97,8 @@ class CodableFeedStoreTests: XCTestCase {
         let sut = makeSUT()
         let expectedFeed = uniqueImageFeed().local
         let expectedTimestamp = Date()
-        let exp = expectation(description: "Wait for completion")
         
-        sut.insert(expectedFeed, timestamp: expectedTimestamp) { insertionError in
-            XCTAssertNil(insertionError, "Expected feed to be inserted successfully")
-            exp.fulfill()
-        }
-        wait(for: [exp], timeout: 1.0)
+        insert((expectedFeed, expectedTimestamp), to: sut)
         
         expect(sut, toRetrieveTwice: .found(feed: expectedFeed, timestamp: expectedTimestamp))
     }
@@ -119,6 +109,15 @@ class CodableFeedStoreTests: XCTestCase {
         let sut = CodableFeedStore(storeURL: storeURL)
         trackForMemoryLeaks(sut, file: file, line: line)
         return sut
+    }
+    
+    private func insert(_ cache: (feed: [LocalFeedImage], timestamp: Date), to sut: CodableFeedStore, file: StaticString = #filePath, line: UInt = #line) {
+        let exp = expectation(description: "Wait for completion")
+        sut.insert(cache.feed, timestamp: cache.timestamp) { insertionError in
+            XCTAssertNil(insertionError, "Expected feed to be inserted successfully")
+            exp.fulfill()
+        }
+        wait(for: [exp], timeout: 1.0)
     }
     
     private func expect(_ sut: CodableFeedStore, toRetrieve expectedResult: RetrieveCachedFeedResult, file: StaticString = #filePath, line: UInt = #line) {
